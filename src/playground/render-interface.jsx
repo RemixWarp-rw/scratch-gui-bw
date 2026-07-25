@@ -237,25 +237,25 @@ const Footer = () => (
                     </a>
                 </div>
                 <div className={styles.footerSection}>
-                    <a href="https://packager.bilup.org/">
+                    <a href="https://packager.bugwarp.org/">
                         {/* Do not translate */}
-                        {'Bilup Packager'}
+                        {'BugWarp Packager'}
                     </a>
-                    <a href="https://docs.bilup.org/embedding">
+                    <a href="https://docs.bugwarp.org/embedding">
                         <FormattedMessage
                             defaultMessage="Embedding"
                             description="Link in footer to embedding documentation for embedding link"
                             id="tw.footer.embed"
                         />
                     </a>
-                    <a href="https://docs.bilup.org/url-parameters">
+                    <a href="https://docs.bugwarp.org/url-parameters">
                         <FormattedMessage
                             defaultMessage="URL Parameters"
                             description="Link in footer to URL parameters documentation"
                             id="tw.footer.parameters"
                         />
                     </a>
-                    <a href="https://docs.bilup.org">
+                    <a href="https://docs.bugwarp.org">
                         <FormattedMessage
                             defaultMessage="Documentation"
                             description="Link in footer to additional documentation"
@@ -431,11 +431,11 @@ class Interface extends React.Component {
                                             values={{
                                                 link: (
                                                     <a
-                                                        href="https://docs.bilup.org/unshared-projects"
+                                                        href="https://docs.bugwarp.org/unshared-projects"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                     >
-                                                        {'https://docs.bilup.org/unshared-projects'}
+                                                        {'https://docs.bugwarp.org/unshared-projects'}
                                                     </a>
                                                 )
                                             }}

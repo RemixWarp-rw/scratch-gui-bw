@@ -182,7 +182,7 @@ const buildRequestMessages = (
     return toProviderMessage(message, content, options);
   });
 
-export const SYSTEM_PROMPT = `You are Bilup Nova, an AI coding assistant inside Bilup (Scratch environment), based on the Gandi IDE AI assistant addon.
+export const SYSTEM_PROMPT = `You are BugWarp Nova, an AI coding assistant inside BugWarp (Scratch environment), based on the Gandi IDE AI assistant addon.
 
 Language:
 - Use the same language as the user's latest message. If unclear, use zh-CN.

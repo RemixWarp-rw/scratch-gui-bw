@@ -3,7 +3,7 @@ import React from 'react';
 import bindAll from 'lodash.bindall';
 import VM from 'scratch-vm';
 import PaintEditor from '../lib/tw-scratch-paint';
-import {inlineSvgFonts, sanitizeSvg} from '@bilup/scratch-svg-renderer';
+import {inlineSvgFonts, sanitizeSvg} from '@bugwarp/scratch-svg-renderer';
 import ErrorBoundaryHOC from '../lib/components/error-boundary-hoc.jsx';
 import {openFontsModal} from '../reducers/modals';
 

@@ -1,5 +1,5 @@
 import storage from '../persistence/storage';
-import {inlineSvgFonts} from '@bilup/scratch-svg-renderer';
+import {inlineSvgFonts} from '@bugwarp/scratch-svg-renderer';
 
 // Contains 'font-family', but doesn't only contain 'font-family="none"'
 const HAS_FONT_REGEXP = 'font-family(?!="none")';

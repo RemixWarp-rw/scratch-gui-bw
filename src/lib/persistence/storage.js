@@ -1,4 +1,4 @@
-import ScratchStorage from '@bilup/scratch-storage';
+import ScratchStorage from '@bugwarp/scratch-storage';
 
 import defaultProject from '../default-project';
 

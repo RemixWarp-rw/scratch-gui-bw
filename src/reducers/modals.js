@@ -28,6 +28,12 @@ const MODAL_WARPTHEME = 'bilmeModal';
 const MODAL_CUSTOM_GALLERY = 'customGalleryModal';
 const MODAL_DEBUGGER = 'debuggerModal';
 
+// BugWarp 新增模态
+const MODAL_BU_COINS = 'buCoinsModal';
+const MODAL_CHECKIN = 'checkinModal';
+const MODAL_WORKBENCH = 'workbenchModal';
+const MODAL_AI_TRAINING = 'aiTrainingModal';
+
 const initialState = {
     [MODAL_BACKDROP_LIBRARY]: false,
     [MODAL_COSTUME_LIBRARY]: false,
@@ -54,7 +60,11 @@ const initialState = {
     [MODAL_SHORTCUT_MANAGER]: false,
     [MODAL_WARPTHEME]: false,
     [MODAL_CUSTOM_GALLERY]: false,
-    [MODAL_DEBUGGER]: false
+    [MODAL_DEBUGGER]: false,
+    [MODAL_BU_COINS]: false,
+    [MODAL_CHECKIN]: false,
+    [MODAL_WORKBENCH]: false,
+    [MODAL_AI_TRAINING]: false
 };
 
 const reducer = function (state, action) {
@@ -168,6 +178,33 @@ const openDebuggerModal = function () {
 const closeDebuggerModal = function () {
     return closeModal(MODAL_DEBUGGER);
 };
+
+// BugWarp 新增模态函数
+const openBuCoinsModal = function () {
+    return openModal(MODAL_BU_COINS);
+};
+const closeBuCoinsModal = function () {
+    return closeModal(MODAL_BU_COINS);
+};
+const openCheckinModal = function () {
+    return openModal(MODAL_CHECKIN);
+};
+const closeCheckinModal = function () {
+    return closeModal(MODAL_CHECKIN);
+};
+const openWorkbenchModal = function () {
+    return openModal(MODAL_WORKBENCH);
+};
+const closeWorkbenchModal = function () {
+    return closeModal(MODAL_WORKBENCH);
+};
+const openAITrainingModal = function () {
+    return openModal(MODAL_AI_TRAINING);
+};
+const closeAITrainingModal = function () {
+    return closeModal(MODAL_AI_TRAINING);
+};
+
 const openSimpleDialog = function (dialogConfig) {
     return {
         type: 'scratch-gui/modals/SHOW_SIMPLE_DIALOG',
@@ -300,5 +337,18 @@ export {
     closeShortcutManagerModal,
     closeBilmeModal,
     closeCustomGalleryModal,
-    openCustomGalleryModal
+    openCustomGalleryModal,
+    // BugWarp 新增
+    openBuCoinsModal,
+    closeBuCoinsModal,
+    openCheckinModal,
+    closeCheckinModal,
+    openWorkbenchModal,
+    closeWorkbenchModal,
+    openAITrainingModal,
+    closeAITrainingModal,
+    MODAL_BU_COINS,
+    MODAL_CHECKIN,
+    MODAL_WORKBENCH,
+    MODAL_AI_TRAINING
 };

@@ -1,9 +1,12 @@
 import bindAll from 'lodash.bindall';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {connect} from 'react-redux';
 import VM from 'scratch-vm';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import log from '../lib/utils/log';
+
+import {enableCoreCategory, disableCoreCategory} from '../reducers/core-categories';
 
 import extensionLibraryContent, {
     galleryError,
@@ -232,22 +235,22 @@ const fetchLibrary = async (onProgress) => {
                     featured: true
                 }));
         }),
-        fetchAndAdd('Bilup', async () => {
-            const bilupRes = await fetch('https://extensions.bilup.org/generated-metadata/extensions-v0.json');
-            if (!bilupRes.ok) {
-                console.warn(`Bilup extensions: HTTP status ${bilupRes.status}`);
+        fetchAndAdd('BugWarp', async () => {
+            const bugwarpRes = await fetch('https://extensions.bugwarp.org/generated-metadata/extensions-v0.json');
+            if (!bugwarpRes.ok) {
+                console.warn(`BugWarp extensions: HTTP status ${bugwarpRes.status}`);
                 return [];
             }
-            const bilupData = await bilupRes.json();
-            return bilupData.extensions.map(extension => ({
+            const bugwarpData = await bugwarpRes.json();
+            return bugwarpData.extensions.map(extension => ({
                 name: extension.name,
                 nameTranslations: extension.nameTranslations || {},
                 description: extension.description,
                 descriptionTranslations: extension.descriptionTranslations || {},
                 extensionId: extension.id,
-                extensionURL: `https://extensions.bilup.org/${extension.slug}.js`,
-                iconURL: `https://extensions.bilup.org/${extension.image || 'images/unknown.svg'}`,
-                tags: ['bilup'],
+                extensionURL: `https://extensions.bugwarp.org/${extension.slug}.js`,
+                iconURL: `https://extensions.bugwarp.org/${extension.image || 'images/unknown.svg'}`,
+                tags: ['bugwarp'],
                 credits: [
                     ...(extension.by || []),
                     ...(extension.original || [])
@@ -266,9 +269,9 @@ const fetchLibrary = async (onProgress) => {
                     }
                     return credit.name;
                 }),
-                docsURI: extension.docs ? `https://extensions.bilup.org/${extension.slug}` : null,
+                docsURI: extension.docs ? `https://extensions.bugwarp.org/${extension.slug}` : null,
                 samples: extension.samples ? extension.samples.map(sample => ({
-                    href: `${process.env.ROOT}editor?project_url=https://extensions.bilup.org/samples/${encodeURIComponent(sample)}.sb3`,
+                    href: `${process.env.ROOT}editor?project_url=https://extensions.bugwarp.org/samples/${encodeURIComponent(sample)}.sb3`,
                     text: sample
                 })) : null,
                 incompatibleWithScratch: true,
@@ -380,6 +383,11 @@ class ExtensionLibrary extends React.PureComponent {
 
         const extensionId = item.extensionId;
 
+        if (item.isCoreCategory) {
+            this.props.enableCoreCategory(item.coreCategoryId || item.extensionId);
+            return;
+        }
+
         if (extensionId === 'custom_extension') {
             this.props.onOpenCustomExtensionModal();
             return;
@@ -433,7 +441,13 @@ class ExtensionLibrary extends React.PureComponent {
     render() {
         let library = null;
         if (this.state.gallery || this.state.galleryError || this.state.galleryTimedOut) {
-            library = extensionLibraryContent.map(toLibraryItem);
+            library = extensionLibraryContent.map(item => {
+                const libraryItem = toLibraryItem(item);
+                if (libraryItem.isCoreCategory && this.props.enabledCoreCategories.includes(libraryItem.coreCategoryId || libraryItem.extensionId)) {
+                    return {...libraryItem, disabled: true};
+                }
+                return libraryItem;
+            });
             library.push('---');
             if (this.state.gallery) {
                 library.push(toLibraryItem(galleryMore));
@@ -468,6 +482,9 @@ class ExtensionLibrary extends React.PureComponent {
 }
 
 ExtensionLibrary.propTypes = {
+    disableCoreCategory: PropTypes.func,
+    enableCoreCategory: PropTypes.func,
+    enabledCoreCategories: PropTypes.arrayOf(PropTypes.string),
     intl: intlShape.isRequired,
     onActivateBlocksTab: PropTypes.func,
     onCategorySelected: PropTypes.func,
@@ -479,7 +496,16 @@ ExtensionLibrary.propTypes = {
     vm: PropTypes.instanceOf(VM).isRequired // eslint-disable-line react/no-unused-prop-types
 };
 
-export default injectIntl(ExtensionLibrary);
+const mapStateToProps = state => ({
+    enabledCoreCategories: state.scratchGui.coreCategories.enabledCategories
+});
+
+const mapDispatchToProps = {
+    enableCoreCategory,
+    disableCoreCategory
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ExtensionLibrary));
 
 export {
     updateGallery

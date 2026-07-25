@@ -31,7 +31,7 @@ class CustomGalleryModal extends React.Component {
             descriptionTranslations: extension.descriptionTranslations || {},
             extensionId: extension.id,
             extensionURL: extension.extensionURL,
-            iconURL: extension.iconURL || 'https://extensions.bilup.org/images/unknown.svg',
+            iconURL: extension.iconURL || 'https://extensions.bugwarp.org/images/unknown.svg',
             tags: ['custom'],
             credits: extension.credits || [],
             incompatibleWithScratch: true,

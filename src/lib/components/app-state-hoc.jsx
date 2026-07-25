@@ -9,7 +9,7 @@ import localesReducer, {initLocale, localesInitialState} from '../../reducers/lo
 
 import {setPlayer, setFullScreen} from '../../reducers/mode.js';
 
-import locales from '@bilup/scratch-l10n';
+import locales from '@bugwarp/scratch-l10n';
 import {detectLocale} from '../utils/detect-locale';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -32,9 +32,9 @@ class CollaborationModal extends Component {
             showJoinRequest: false,
             showSettings: false,
             peerConfig: {
-                host: 'collab.bilup.org',
+                host: 'collab.bugwarp.org',
                 port: 443,
-                key: 'bilup',
+                key: 'bugwarp',
                 path: '/',
                 secure: true
             }

@@ -46,13 +46,13 @@ const fetchProjectToken = async projectId => {
         return metadata.project_token;
     } catch (e) {
         log.error(e);
-        throw new Error('Cannot access project token. Project is probably unshared. See https://docs.bilup.org/unshared-projects');
+        throw new Error('Cannot access project token. Project is probably unshared. See https://docs.bugwarp.org/unshared-projects');
     }
 };
 
 // TW: Determine asset host based on project source
 const SCRATCH_ASSET_HOST = 'https://assets.scratch.mit.edu';
-const BILUP_ASSET_HOST = 'https://assets.r2.bilup.org';
+const BUGWARP_ASSET_HOST = 'https://assets.r2.bugwarp.org';
 
 const determineAssetHost = (projectUrl, projectId) => {
     // If loading from project_url, determine based on URL domain
@@ -68,10 +68,10 @@ const determineAssetHost = (projectUrl, projectId) => {
                 return SCRATCH_ASSET_HOST;
             }
             
-            // Bilup sources
-            if (hostname === 'bilup.org' || 
-                hostname.endsWith('.bilup.org')) {
-                return BILUP_ASSET_HOST;
+            // BugWarp sources
+            if (hostname === 'bugwarp.org' || 
+                hostname.endsWith('.bugwarp.org')) {
+                return BUGWARP_ASSET_HOST;
             }
             
             // TurboWarp sources - use Scratch assets as fallback
@@ -80,11 +80,11 @@ const determineAssetHost = (projectUrl, projectId) => {
                 return SCRATCH_ASSET_HOST;
             }
             
-            // For other URLs, use default Bilup CDN (may not work for all)
-            return BILUP_ASSET_HOST;
+            // For other URLs, use default BugWarp CDN (may not work for all)
+            return BUGWARP_ASSET_HOST;
         } catch (e) {
             // Invalid URL, use default
-            return BILUP_ASSET_HOST;
+            return BUGWARP_ASSET_HOST;
         }
     }
     
@@ -96,8 +96,8 @@ const determineAssetHost = (projectUrl, projectId) => {
         }
     }
     
-    // Default to Bilup CDN
-    return BILUP_ASSET_HOST;
+    // Default to BugWarp CDN
+    return BUGWARP_ASSET_HOST;
 };
 
 /* Higher Order Component to provide behavior for loading projects by id. If
@@ -259,7 +259,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
         vm: PropTypes.instanceOf(VM)
     };
     ProjectFetcherComponent.defaultProps = {
-        assetHost: 'https://assets.r2.bilup.org',
+        assetHost: 'https://assets.r2.bugwarp.org',
         projectHost: 'https://projects.scratch.mit.edu'
     };
 

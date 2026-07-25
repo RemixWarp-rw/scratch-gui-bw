@@ -1,8 +1,10 @@
-scratch-gui modified for use in [Bilup](https://www.bilup.org/)
+scratch-gui modified for use in [BugWarp](https://github.com/RemixWarp-rw/scratch-gui-bw)
+
+**本项目仅供娱乐。**
 
 ## Setup
 
-See https://docs.bilup.org/development/getting-started to setup the complete Bilup environment.
+See https://docs.bilup.org/development/getting-started to setup the complete BugWarp environment.
 
 If you just want to play with the GUI then it's the same process as upstream scratch-gui.
 

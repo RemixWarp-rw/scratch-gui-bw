@@ -1,6 +1,6 @@
 export default {
-    name: 'Bilup Nova',
-    description: 'An AI assistant for Bilup, based on Gandi IDE AI assistant addon.',
+    name: 'BugWarp Nova',
+    description: 'An AI assistant for BugWarp, based on Gandi IDE AI assistant addon.',
     credits: [
         {
             name: '白猫@CCW',

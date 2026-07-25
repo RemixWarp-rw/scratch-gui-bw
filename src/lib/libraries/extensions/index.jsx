@@ -57,6 +57,105 @@ import {APP_NAME} from '../../constants/brand';
 
 export default [
     {
+        name: 'Motion',
+        nameTranslations: {'zh-cn': '运动'},
+        extensionId: 'motion',
+        isCoreCategory: true,
+        coreCategoryId: 'motion',
+        iconURL: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nNDUnIGZpbGw9JyM0Qzk3RkYnLz48L3N2Zz4=',
+        description: 'Move sprites with motion blocks.',
+        descriptionTranslations: {'zh-cn': '使用运动积木移动角色。'},
+        tags: ['core']
+    },
+    {
+        name: 'Looks',
+        nameTranslations: {'zh-cn': '外观'},
+        extensionId: 'looks',
+        isCoreCategory: true,
+        coreCategoryId: 'looks',
+        iconURL: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nNDUnIGZpbGw9JyM5OTY2RkYnLz48L3N2Zz4=',
+        description: 'Change how sprites look.',
+        descriptionTranslations: {'zh-cn': '改变角色的外观。'},
+        tags: ['core']
+    },
+    {
+        name: 'Sound',
+        nameTranslations: {'zh-cn': '声音'},
+        extensionId: 'sound',
+        isCoreCategory: true,
+        coreCategoryId: 'sound',
+        iconURL: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nNDUnIGZpbGw9JyNDRjYzQ0YnLz48L3N2Zz4=',
+        description: 'Play sounds and music.',
+        descriptionTranslations: {'zh-cn': '播放声音和音乐。'},
+        tags: ['core']
+    },
+    {
+        name: 'Events',
+        nameTranslations: {'zh-cn': '事件'},
+        extensionId: 'events',
+        isCoreCategory: true,
+        coreCategoryId: 'events',
+        iconURL: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nNDUnIGZpbGw9JyNGRkJGMDAnLz48L3N2Zz4=',
+        description: 'Trigger scripts with events.',
+        descriptionTranslations: {'zh-cn': '使用事件触发脚本。'},
+        tags: ['core']
+    },
+    {
+        name: 'Control',
+        nameTranslations: {'zh-cn': '控制'},
+        extensionId: 'control',
+        isCoreCategory: true,
+        coreCategoryId: 'control',
+        iconURL: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nNDUnIGZpbGw9JyNGRkFCMTknLz48L3N2Zz4=',
+        description: 'Control the flow of scripts.',
+        descriptionTranslations: {'zh-cn': '控制脚本的流程。'},
+        tags: ['core']
+    },
+    {
+        name: 'Sensing',
+        nameTranslations: {'zh-cn': '侦测'},
+        extensionId: 'sensing',
+        isCoreCategory: true,
+        coreCategoryId: 'sensing',
+        iconURL: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nNDUnIGZpbGw9JyM1Q0IxRDYnLz48L3N2Zz4=',
+        description: 'Detect things with sensing blocks.',
+        descriptionTranslations: {'zh-cn': '使用侦测积木检测事物。'},
+        tags: ['core']
+    },
+    {
+        name: 'Operators',
+        nameTranslations: {'zh-cn': '运算'},
+        extensionId: 'operators',
+        isCoreCategory: true,
+        coreCategoryId: 'operators',
+        iconURL: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nNDUnIGZpbGw9JyM1OUMwNTknLz48L3N2Zz4=',
+        description: 'Math and string operations.',
+        descriptionTranslations: {'zh-cn': '数学和字符串运算。'},
+        tags: ['core']
+    },
+    {
+        name: 'Data',
+        nameTranslations: {'zh-cn': '变量'},
+        extensionId: 'data',
+        isCoreCategory: true,
+        coreCategoryId: 'data',
+        iconURL: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nNDUnIGZpbGw9JyNGRjhDMUEnLz48L3N2Zz4=',
+        description: 'Create and use variables.',
+        descriptionTranslations: {'zh-cn': '创建和使用变量。'},
+        tags: ['core']
+    },
+    {
+        name: 'Procedures',
+        nameTranslations: {'zh-cn': '函数'},
+        extensionId: 'procedures',
+        isCoreCategory: true,
+        coreCategoryId: 'more',
+        iconURL: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGNpcmNsZSBjeD0nNTAnIGN5PSc1MCcgcj0nNDUnIGZpbGw9JyNGRjY2ODAnLz48L3N2Zz4=',
+        description: 'Make your own blocks.',
+        descriptionTranslations: {'zh-cn': '制作你自己的积木。'},
+        tags: ['core']
+    },
+    {
         name: (
             <FormattedMessage
                 defaultMessage="{APP_NAME} Blocks"
@@ -438,7 +537,7 @@ export const galleryLoading = {
             }}
         />
     ),
-    href: 'https://extensions.bilup.org/',
+    href: 'https://extensions.bugwarp.org/',
     extensionId: 'gallery',
     iconURL: galleryIcon,
     description: (
@@ -449,7 +548,7 @@ export const galleryLoading = {
             id="tw.extensionGallery.loading"
         />
     ),
-    tags: ['tw', 'bilup', 'sharkpool', 'mistium', 'ae'],
+    tags: ['tw', 'bugwarp', 'sharkpool', 'mistium', 'ae'],
     featured: true
 };
 
@@ -464,18 +563,18 @@ export const galleryMore = {
             }}
         />
     ),
-    href: 'https://extensions.bilup.org/',
+    href: 'https://extensions.bugwarp.org/',
     extensionId: 'gallery',
     iconURL: galleryIcon,
     description: (
         <FormattedMessage
             // eslint-disable-next-line max-len
-            defaultMessage="Including extensions from TurboWarp, Mistium, SharkPool, Bilup, and AstraEditor."
+            defaultMessage="Including extensions from TurboWarp, Mistium, SharkPool, BugWarp, and AstraEditor."
             description="Appears after the extension list from the gallery was loaded successfully"
             id="tw.extensionGallery.more"
         />
     ),
-    tags: ['tw', 'bilup', 'sharkpool', 'mistium', 'ae'],
+    tags: ['tw', 'bugwarp', 'sharkpool', 'mistium', 'ae'],
     featured: true
 };
 
@@ -490,7 +589,7 @@ export const galleryError = {
             }}
         />
     ),
-    href: 'https://extensions.bilup.org/',
+    href: 'https://extensions.bugwarp.org/',
     extensionId: 'gallery',
     iconURL: galleryIcon,
     description: (
@@ -501,6 +600,6 @@ export const galleryError = {
             id="tw.extensionGallery.error"
         />
     ),
-    tags: ['tw', 'bilup', 'sharkpool', 'mistium', 'ae'],
+    tags: ['tw', 'bugwarp', 'sharkpool', 'mistium', 'ae'],
     featured: true
 };

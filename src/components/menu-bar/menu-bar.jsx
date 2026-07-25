@@ -62,8 +62,13 @@ import {
     openGitModal,
     openExtensionManagerModal,
     openShortcutManagerModal,
-    openSimpleDialog
+    openSimpleDialog,
+    openBuCoinsModal,
+    openCheckinModal,
+    openWorkbenchModal,
+    openAITrainingModal
 } from '../../reducers/modals';
+import { setProgrammingMode, PROGRAMMING_MODES } from '../../reducers/programming-mode';
 import { showOnboarding } from '../../reducers/onboarding';
 import { openCollaborationModal } from '../../reducers/collaboration';
 import { setPlayer } from '../../reducers/mode';
@@ -159,7 +164,7 @@ import {
     Save, ArchiveRestore, UserPen, Cloud, Settings, PackagePlus, Puzzle,
     Bookmark, GitBranch, FileCog, Bug, Database, Undo, Redo, Handshake,
     Sparkles, Wrench, Keyboard, ChartColumn, ListTodo, AppWindow, Send,
-    Download
+    Download, Coins, CalendarDays, Hammer, Brain
 } from 'lucide-react';
 
 import sharedMessages from '../../lib/constants/shared-messages';
@@ -378,10 +383,10 @@ class MenuBar extends React.Component {
         this.startAutosaveCountdown();
 
         // Prevent the legacy addon from also injecting a bookmarks menu.
-        window.__bilupNativeWorkspaceBookmarks = true;
+        window.__bugwarpNativeWorkspaceBookmarks = true;
 
         // Expose showPrompt for addons
-        window.__bilupPrompt = this.showPrompt.bind(this);
+        window.__bugwarpPrompt = this.showPrompt.bind(this);
 
         this.loadWorkspaceBookmarksFromProject();
         if (this.props.vm && this.props.vm.runtime) {
@@ -1930,6 +1935,70 @@ class MenuBar extends React.Component {
                                         />
                                     </MenuItem>
                                 </MenuSection>
+                                <MenuSection>
+                                    <MenuItem
+                                        onClick={() => {
+                                            this.props.onClickBuCoins();
+                                            this.props.onRequestCloseEdit();
+                                        }}
+                                    >
+                                        <Coins />
+                                        Bu币
+                                    </MenuItem>
+                                    <MenuItem
+                                        onClick={() => {
+                                            this.props.onClickCheckin();
+                                            this.props.onRequestCloseEdit();
+                                        }}
+                                    >
+                                        <CalendarDays />
+                                        每日签到
+                                    </MenuItem>
+                                    <MenuItem
+                                        onClick={() => {
+                                            this.props.onClickWorkbench();
+                                            this.props.onRequestCloseEdit();
+                                        }}
+                                    >
+                                        <Hammer />
+                                        工作台
+                                    </MenuItem>
+                                    <MenuItem
+                                        onClick={() => {
+                                            this.props.onClickAITraining();
+                                            this.props.onRequestCloseEdit();
+                                        }}
+                                    >
+                                        <Brain />
+                                        AI训练
+                                    </MenuItem>
+                                </MenuSection>
+                                <MenuSection>
+                                    <MenuItem
+                                        onClick={() => {
+                                            this.props.onSetProgrammingMode(PROGRAMMING_MODES.OOP);
+                                            this.props.onRequestCloseEdit();
+                                        }}
+                                    >
+                                        <span className={classNames({ [styles.inactive]: this.props.programmingMode !== PROGRAMMING_MODES.OOP })}>
+                                            {'✓'}
+                                        </span>
+                                        {' '}
+                                        面向对象编程
+                                    </MenuItem>
+                                    <MenuItem
+                                        onClick={() => {
+                                            this.props.onSetProgrammingMode(PROGRAMMING_MODES.PROCEDURAL);
+                                            this.props.onRequestCloseEdit();
+                                        }}
+                                    >
+                                        <span className={classNames({ [styles.inactive]: this.props.programmingMode !== PROGRAMMING_MODES.PROCEDURAL })}>
+                                            {'✓'}
+                                        </span>
+                                        {' '}
+                                        面向过程编程
+                                    </MenuItem>
+                                </MenuSection>
                             </MenuBarMenu>
                         </MenuLabel>
                         {this.props.isTotallyNormal && (
@@ -2038,12 +2107,12 @@ class MenuBar extends React.Component {
                                         />
                                     </MenuItem>
                                 </MenuSection>
-                                {window.__bilupDebuggerToggle || window.__bilupVariableManagerToggle ? (
+                                {window.__bugwarpDebuggerToggle || window.__bugwarpVariableManagerToggle ? (
                                     <MenuSection>
-                                        {window.__bilupDebuggerToggle && (
+                                        {window.__bugwarpDebuggerToggle && (
                                             <MenuItem
                                                 onClick={() => {
-                                                    window.__bilupDebuggerToggle();
+                                                    window.__bugwarpDebuggerToggle();
                                                     this.props.onRequestCloseTools();
                                                 }}
                                             >
@@ -2055,10 +2124,10 @@ class MenuBar extends React.Component {
                                                 />
                                             </MenuItem>
                                         )}
-                                        {window.__bilupVariableManagerToggle && (
+                                        {window.__bugwarpVariableManagerToggle && (
                                             <MenuItem
                                                 onClick={() => {
-                                                    window.__bilupVariableManagerToggle();
+                                                    window.__bugwarpVariableManagerToggle();
                                                     this.props.onRequestCloseTools();
                                                 }}
                                             >
@@ -2072,12 +2141,12 @@ class MenuBar extends React.Component {
                                         )}
                                     </MenuSection>
                                 ) : null}
-                                {window.__bilupTodoToggle || window.__bilupSPAToggle ? (
+                                {window.__bugwarpTodoToggle || window.__bugwarpSPAToggle ? (
                                     <MenuSection>
-                                        {window.__bilupSPAToggle && (
+                                        {window.__bugwarpSPAToggle && (
                                             <MenuItem
                                                 onClick={() => {
-                                                    window.__bilupSPAToggle();
+                                                    window.__bugwarpSPAToggle();
                                                     this.props.onRequestCloseTools();
                                                 }}
                                             >
@@ -2089,10 +2158,10 @@ class MenuBar extends React.Component {
                                                 />
                                             </MenuItem>
                                         )}
-                                        {window.__bilupTodoToggle && (
+                                        {window.__bugwarpTodoToggle && (
                                             <MenuItem
                                                 onClick={() => {
-                                                    window.__bilupTodoToggle();
+                                                    window.__bugwarpTodoToggle();
                                                     this.props.onRequestCloseTools();
                                                 }}
                                             >
@@ -2573,7 +2642,8 @@ const mapStateToProps = (state, ownProps) => {
         mode1920: isTimeTravel1920(state),
         mode1990: isTimeTravel1990(state),
         mode2020: isTimeTravel2020(state),
-        modeNow: isTimeTravelNow(state)
+        modeNow: isTimeTravelNow(state),
+        programmingMode: state.scratchGui.programmingMode.mode
     };
 };
 
@@ -2636,7 +2706,24 @@ const mapDispatchToProps = dispatch => ({
     onSetAutosaveEnabled: enabled => dispatch(setAutosaveEnabled(enabled)),
     onSetAutosaveInterval: interval => dispatch(setAutosaveInterval(interval)),
     onSetAutosaveNotifications: showNotifications => dispatch(setAutosaveNotifications(showNotifications)),
-    onSetTimeTravelMode: mode => dispatch(setTimeTravel(mode))
+    onSetTimeTravelMode: mode => dispatch(setTimeTravel(mode)),
+    onClickBuCoins: () => {
+        dispatch(closeEditMenu());
+        dispatch(openBuCoinsModal());
+    },
+    onClickCheckin: () => {
+        dispatch(closeEditMenu());
+        dispatch(openCheckinModal());
+    },
+    onClickWorkbench: () => {
+        dispatch(closeEditMenu());
+        dispatch(openWorkbenchModal());
+    },
+    onClickAITraining: () => {
+        dispatch(closeEditMenu());
+        dispatch(openAITrainingModal());
+    },
+    onSetProgrammingMode: mode => dispatch(setProgrammingMode(mode))
 });
 
 export default compose(

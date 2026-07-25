@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const DocumentationLink = ({slug, children}) => (
     <a
-        href={`https://docs.bilup.org/${slug}`}
+        href={`https://docs.bugwarp.org/${slug}`}
         target="_blank"
         rel="noopener noreferrer"
     >

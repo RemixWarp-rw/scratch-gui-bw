@@ -2390,7 +2390,7 @@ export default function ({ addon, msg, console }) {
   const analyzer = new SimpleProjectAnalyzer();
 
   // Expose toggle function
-  window.__bilupSPAToggle = analyzer.toggleAnalysisWindow.bind(analyzer);
+  window.__bugwarpSPAToggle = analyzer.toggleAnalysisWindow.bind(analyzer);
 
   // 等待编辑器加载完成
   addon.tab.waitForElement('[class*="menu-bar_menu-bar"], [class*="react-tabs_react-tabs__tab-list"]', {

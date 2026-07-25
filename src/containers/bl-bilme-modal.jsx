@@ -17,7 +17,7 @@ class BilmeModal extends React.Component {
     }
 
   handleThemeApply (themeData) {
-    // themeData comes from Bilme export API in Bilup format
+    // themeData comes from Bilme export API in BugWarp format
     // The format is: { themes: [{ accent, gui, blocks, menuBarAlign, wallpaper, fonts }] }
     if (!themeData.themes || themeData.themes.length === 0) {
       console.error('Invalid theme data format');
@@ -27,11 +27,11 @@ class BilmeModal extends React.Component {
     const themeConfig = themeData.themes[0];
 
     // Use CustomTheme.import to properly handle the theme data
-    const bilupTheme = CustomTheme.import(themeConfig);
+    const bugwarpTheme = CustomTheme.import(themeConfig);
 
     // Apply the theme
-    this.props.onSetTheme(bilupTheme);
-    applyTheme(bilupTheme);
+    this.props.onSetTheme(bugwarpTheme);
+    applyTheme(bugwarpTheme);
 
     // Close the modal
     this.props.onClose();

@@ -8,8 +8,8 @@ const manifest = {
       "link": "https://mistium.com/"
     },
     {
-      "name": "Bilup (Translations)",
-      "link": "https://www.bilup.org/"
+      "name": "BugWarp (Translations)",
+      "link": "https://www.bugwarp.org/"
     }
   ],
     userscripts: [

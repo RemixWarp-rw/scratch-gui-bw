@@ -36,6 +36,10 @@ import mwProjectThemeReducer, {mwProjectThemeInitialState} from './mw-project-th
 import onboardingReducer, {onboardingInitialState} from './onboarding';
 import toastReducer, {toastInitialState} from './toast';
 import shortcutsReducer, {shortcutsInitialState} from './shortcuts';
+import coreCategoriesReducer, {coreCategoriesInitialState} from './core-categories';
+import programmingModeReducer, {programmingModeInitialState} from './programming-mode';
+import buCoinsReducer, {buCoinsInitialState} from './bu-coins';
+import workbenchReducer, {workbenchInitialState} from './workbench';
 import throttle from 'redux-throttle';
 
 import decks from '../lib/libraries/decks/index.jsx';
@@ -79,7 +83,11 @@ const guiInitialState = {
     vmStatus: vmStatusInitialState,
     workspaceMetrics: workspaceMetricsInitialState,
     onboarding: onboardingInitialState,
-    shortcuts: shortcutsInitialState
+    shortcuts: shortcutsInitialState,
+    coreCategories: coreCategoriesInitialState,
+    programmingMode: programmingModeInitialState,
+    buCoins: buCoinsInitialState,
+    workbench: workbenchInitialState
 };
 
 const initPlayer = function (currentState) {
@@ -204,7 +212,11 @@ const guiReducer = combineReducers({
     vmStatus: vmStatusReducer,
     workspaceMetrics: workspaceMetricsReducer,
     onboarding: onboardingReducer,
-    shortcuts: shortcutsReducer
+    shortcuts: shortcutsReducer,
+    coreCategories: coreCategoriesReducer,
+    programmingMode: programmingModeReducer,
+    buCoins: buCoinsReducer,
+    workbench: workbenchReducer
 });
 
 export {

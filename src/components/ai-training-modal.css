@@ -1,0 +1,152 @@
+.aiTrainingModal {
+    width: 550px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.aiTrainingBox {
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.statsSection h3,
+.addSampleSection h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.statItem {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.statLabel {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.statValue {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.addSampleSection {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-bottom: 20px;
+}
+
+.formGroup {
+    margin-bottom: 12px;
+}
+
+.formGroup label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.input,
+.select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.input:focus,
+.select:focus {
+    outline: none;
+    border-color: #4c97ff;
+}
+
+.addButton {
+    width: 100%;
+    padding: 10px;
+    background: #4c97ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.addButton:hover {
+    background: #3a7fd9;
+}
+
+.addButton:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.trainSection {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.trainButton {
+    padding: 12px 30px;
+    background: #9c27b0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.trainButton:hover {
+    background: #7b1fa2;
+}
+
+.trainingProgress {
+    text-align: center;
+}
+
+.progressBar {
+    width: 100%;
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #4c97ff, #9c27b0);
+    transition: width 0.3s ease;
+}
+
+.rewardText {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #ff9800;
+}

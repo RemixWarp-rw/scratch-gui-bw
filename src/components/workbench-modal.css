@@ -1,0 +1,113 @@
+.workbenchModal {
+    width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.workbenchBox {
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.recipesSection h3,
+.craftedSection h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+}
+
+.recipesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.recipeCard {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.recipeName {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.recipeDesc {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.ingredientsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 12px;
+}
+
+.ingredient {
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.craftButton {
+    width: 100%;
+    padding: 8px 16px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.craftButton:hover {
+    background: #f57c00;
+}
+
+.craftedButton {
+    width: 100%;
+    padding: 8px 16px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.craftedSection {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.craftedList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.craftedItem {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+}

@@ -26,7 +26,7 @@ const manuallyTrustExtension = url => {
 const isTrustedExtension = url => (
     // Always trust our official extension repostiory.
     url.startsWith('https://extensions.turbowarp.org/') ||
-    url.startsWith('https://extensions.bilup.org/') ||
+    url.startsWith('https://extensions.bugwarp.org/') ||
     url.startsWith('https://extensions.mistium.com/') ||
     url.startsWith('https://sharkpools-extensions.vercel.app/') ||
     url.startsWith('https://editors.astras.top/extensions/') ||
@@ -64,9 +64,9 @@ const isAlwaysTrustedForFetching = parsed => (
     parsed.origin.endsWith('.turbowarp.org') ||
     parsed.origin.endsWith('.turbowarp.xyz') ||
 
-    // Any Bilup service such as trampoline
-    parsed.origin === 'https://bilup.org' ||
-    parsed.origin.endsWith('.bilup.org') ||
+    // Any BugWarp service such as trampoline
+    parsed.origin === 'https://bugwarp.org' ||
+    parsed.origin.endsWith('.bugwarp.org') ||
 
     // GitHub API
     // GitHub Pages allows redirects, so not included here.

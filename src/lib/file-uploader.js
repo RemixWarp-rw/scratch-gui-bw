@@ -1,4 +1,4 @@
-import {BitmapAdapter, sanitizeSvg, fixForVanilla} from '@bilup/scratch-svg-renderer';
+import {BitmapAdapter, sanitizeSvg, fixForVanilla} from '@bugwarp/scratch-svg-renderer';
 import randomizeSpritePosition from './utils/randomize-sprite-position.js';
 import bmpConverter from './utils/bmp-converter';
 import gifDecoder from './utils/gif-decoder.js';

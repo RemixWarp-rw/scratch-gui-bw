@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {STAGE_DISPLAY_SIZES} from '../lib/constants/layout-constants';
 import {getEventXY} from '../lib/utils/touch';
 import VideoProvider from '../lib/video/video-provider';
-import {BitmapAdapter as V2BitmapAdapter} from '@bilup/scratch-svg-renderer';
+import {BitmapAdapter as V2BitmapAdapter} from '@bugwarp/scratch-svg-renderer';
 
 import StageComponent from '../components/stage/stage.jsx';
 

@@ -90,7 +90,7 @@ class CustomGalleryModalComponent extends React.Component {
             description: description || '',
             descriptionTranslations: {},
             extensionURL: extensionUrl,
-            iconURL: iconUrl || 'https://extensions.bilup.org/images/unknown.svg',
+            iconURL: iconUrl || 'https://extensions.bugwarp.org/images/unknown.svg',
             tags: ['custom'],
             credits: author ? [author] : [],
             featured: true,

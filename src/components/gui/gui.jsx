@@ -54,6 +54,13 @@ import AddonHooks from '../../addons/hooks.js';
 import NativeFindBar from '../find-bar/find-bar.jsx';
 import Onboarding from '../../containers/onboarding.jsx';
 
+import BuCoinsModal from '../../containers/bu-coins-modal.jsx';
+import CheckinModal from '../../containers/checkin-modal.jsx';
+import WorkbenchModal from '../../containers/workbench-modal.jsx';
+import AITrainingModal from '../../containers/ai-training-modal.jsx';
+import {MODAL_BU_COINS, MODAL_CHECKIN, MODAL_WORKBENCH, MODAL_AI_TRAINING} from '../../reducers/modals';
+import {PROGRAMMING_MODES} from '../../reducers/programming-mode';
+
 import {STAGE_SIZE_MODES, FIXED_WIDTH, UNCONSTRAINED_NON_STAGE_WIDTH} from '../../lib/constants/layout-constants';
 import {resolveStageSize} from '../../lib/utils/screen';
 import {Theme} from '../../lib/themes';
@@ -601,6 +608,11 @@ const GUIComponent = props => {
         invalidProjectModalVisible,
         gitModalVisible,
         shortcutManagerModalVisible,
+        buCoinsModalVisible,
+        checkinModalVisible,
+        workbenchModalVisible,
+        aiTrainingModalVisible,
+        programmingMode,
         vm,
         ...componentProps
     } = omit(props, 'dispatch');
@@ -671,6 +683,10 @@ const GUIComponent = props => {
             {gitModalVisible && <TWGitModal />}
             <SimpleDialog />
             {onboardingVisible && <Onboarding />}
+            {buCoinsModalVisible && <BuCoinsModal />}
+            {checkinModalVisible && <CheckinModal />}
+            {workbenchModalVisible && <WorkbenchModal />}
+            {aiTrainingModalVisible && <AITrainingModal />}
         </React.Fragment>
     ), [
         securityManager,
@@ -684,7 +700,11 @@ const GUIComponent = props => {
         invalidProjectModalVisible,
         gitModalVisible,
         shortcutManagerModalVisible,
-        onboardingVisible
+        onboardingVisible,
+        buCoinsModalVisible,
+        checkinModalVisible,
+        workbenchModalVisible,
+        aiTrainingModalVisible
     ]);
 
     // const minDimensions = useMemo(() => ({
@@ -948,37 +968,41 @@ const GUIComponent = props => {
                             ) : null}
                         </Box>
 
-                        <Box
-                            className={styles.stagePaneResizer}
-                            onPointerDown={enableStageResize ? handleStagePanelResizePointerDown : undefined}
-                            onDoubleClick={enableStageResize ? handleStagePanelResizeDoubleClick : undefined}
-                            role="separator"
-                            aria-orientation="vertical"
-                            tabIndex={-1}
-                        />
-
-                        <Box
-                            className={classNames(styles.stageAndTargetWrapper, styles[stageSize])}
-                            ref={stageAndTargetWrapperRef}
-                            style={enableStageResize ? stagePanelStyle : undefined}
-                        >
-                            <StageWrapper
-                                isFullScreen={isFullScreen}
-                                isRendererSupported={isRendererSupported()}
-                                isRtl={isRtl}
-                                stageSize={stageSize}
-                                stageContainerWidth={
-                                    typeof stageContainerWidth === 'number' ? stageContainerWidth : null
-                                }
-                                vm={vm}
+                        {programmingMode !== PROGRAMMING_MODES.PROCEDURAL && (
+                            <Box
+                                className={styles.stagePaneResizer}
+                                onPointerDown={enableStageResize ? handleStagePanelResizePointerDown : undefined}
+                                onDoubleClick={enableStageResize ? handleStagePanelResizeDoubleClick : undefined}
+                                role="separator"
+                                aria-orientation="vertical"
+                                tabIndex={-1}
                             />
-                            <Box className={styles.targetWrapper}>
-                                <TargetPane
+                        )}
+
+                        {programmingMode !== PROGRAMMING_MODES.PROCEDURAL && (
+                            <Box
+                                className={classNames(styles.stageAndTargetWrapper, styles[stageSize])}
+                                ref={stageAndTargetWrapperRef}
+                                style={enableStageResize ? stagePanelStyle : undefined}
+                            >
+                                <StageWrapper
+                                    isFullScreen={isFullScreen}
+                                    isRendererSupported={isRendererSupported()}
+                                    isRtl={isRtl}
                                     stageSize={stageSize}
+                                    stageContainerWidth={
+                                        typeof stageContainerWidth === 'number' ? stageContainerWidth : null
+                                    }
                                     vm={vm}
                                 />
+                                <Box className={styles.targetWrapper}>
+                                    <TargetPane
+                                        stageSize={stageSize}
+                                        vm={vm}
+                                    />
+                                </Box>
                             </Box>
-                        </Box>
+                        )}
                     </Box>
                 </Box>
                         {extensionLibraryVisible ? (
@@ -1134,7 +1158,12 @@ const mapStateToProps = state => ({
     theme: state.scratchGui.theme.theme,
     locale: state.locales.locale,
     onboardingVisible: state.scratchGui.onboarding.visible,
-    shortcutManagerModalVisible: state.scratchGui.modals.shortcutManagerModal
+    shortcutManagerModalVisible: state.scratchGui.modals.shortcutManagerModal,
+    buCoinsModalVisible: state.scratchGui.modals[MODAL_BU_COINS],
+    checkinModalVisible: state.scratchGui.modals[MODAL_CHECKIN],
+    workbenchModalVisible: state.scratchGui.modals[MODAL_WORKBENCH],
+    aiTrainingModalVisible: state.scratchGui.modals[MODAL_AI_TRAINING],
+    programmingMode: state.scratchGui.programmingMode.mode
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -9,17 +9,17 @@ import './onboarding.css';
 
 const messages = defineMessages({
     windowTitle: {
-        defaultMessage: 'Bilup Tutorial',
+        defaultMessage: 'BugWarp Tutorial',
         description: 'Title of the onboarding tutorial window',
         id: 'onboarding.windowTitle'
     },
     step1Title: {
-        defaultMessage: 'Welcome to Bilup!',
+        defaultMessage: 'Welcome to BugWarp!',
         description: 'Title of the first onboarding step',
         id: 'onboarding.step1.title'
     },
     step1Content: {
-        defaultMessage: 'Follow this short tour to discover the powerful features that make Bilup special.',
+        defaultMessage: 'Follow this short tour to discover the powerful features that make BugWarp special.',
         description: 'Content of the first onboarding step',
         id: 'onboarding.step1.content'
     },
@@ -39,7 +39,7 @@ const messages = defineMessages({
         id: 'onboarding.step3.title'
     },
     step3Content: {
-        defaultMessage: "Bilup's window manager gives you unparalleled multitasking power. Drag windows anywhere, resize them to your liking, or keep them always-on-top when you need them.",
+        defaultMessage: "BugWarp's window manager gives you unparalleled multitasking power. Drag windows anywhere, resize them to your liking, or keep them always-on-top when you need them.",
         description: 'Content of the third onboarding step',
         id: 'onboarding.step3.content'
     },
@@ -59,7 +59,7 @@ const messages = defineMessages({
         id: 'onboarding.step5.title'
     },
     step5Content: {
-        defaultMessage: 'Choose from beautiful themes, accent colors, wallpapers, and custom fonts in Settings. Make Bilup yours.',
+        defaultMessage: 'Choose from beautiful themes, accent colors, wallpapers, and custom fonts in Settings. Make BugWarp yours.',
         description: 'Content of the fifth onboarding step',
         id: 'onboarding.step5.content'
     },

@@ -1,0 +1,127 @@
+.buCoinsModal {
+    width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.buCoinsBox {
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.statItem {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.statLabel {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.statValue {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.checkinButton {
+    flex: 1;
+    padding: 12px 20px;
+    background: #4c97ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.checkinButton:hover {
+    background: #3a7fd9;
+}
+
+.secondaryButton {
+    flex: 1;
+    padding: 12px 20px;
+    background: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.secondaryButton:hover {
+    background: #e0e0e0;
+}
+
+.historySection {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.historySection h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.historyList {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.historyItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+}
+
+.historyDesc {
+    color: #666;
+}
+
+.historyPositive {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.historyNegative {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.emptyHistory {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}

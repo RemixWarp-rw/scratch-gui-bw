@@ -259,24 +259,24 @@ const About = () => (
                         {APP_NAME} is a better offline editor for Scratch 3. It enhances your Scratch experience with advanced features and optimizations.
                     </p>
                     <p>
-                        Learn more at <a href="https://www.bilup.org/">https://www.bilup.org/</a>.
+                        Learn more at <a href="https://www.bugwarp.org/">https://www.bugwarp.org/</a>.
                     </p>
                     <p>
                         {APP_NAME} is licensed under the GNU General Public License v3.0.
-                        The source code is published <a href="https://github.com/Bilup/" target="_blank" rel="noreferrer">on GitHub</a>.
+                        The source code is published <a href="https://github.com/BugWarp/" target="_blank" rel="noreferrer">on GitHub</a>.
                     </p>
                     <p>
-                        About more updates, please visit at <a href="https://github.com/Bilup/">GitHub</a>.
+                        About more updates, please visit at <a href="https://github.com/BugWarp/">GitHub</a>.
                     </p>
                 </div>
                 {/* <div className="links">
-                    <a href="https://www.bilup.org/" className="btn btn-primary" target="_blank" rel="noreferrer">
+                    <a href="https://www.bugwarp.org/" className="btn btn-primary" target="_blank" rel="noreferrer">
                         Visit Website
                     </a>
-                    <a href="https://github.com/Bilup/" className="btn btn-secondary" target="_blank" rel="noreferrer">
+                    <a href="https://github.com/BugWarp/" className="btn btn-secondary" target="_blank" rel="noreferrer">
                         GitHub
                     </a>
-                     <a href="mailto:support@bilup.org" className="btn btn-secondary">
+                     <a href="mailto:support@bugwarp.org" className="btn btn-secondary">
                         Contact Us
                     </a> 
                 </div>  */}

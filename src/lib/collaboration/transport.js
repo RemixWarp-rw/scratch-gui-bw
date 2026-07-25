@@ -4,9 +4,9 @@ import {validateEnvelope, makeCtrl, KIND, CTRL} from './protocol.js';
 import {APP_NAME} from '../constants/brand.js';
 
 const DEFAULT_PEER_CONFIG = {
-    host: 'collab.bilup.org',
+    host: 'collab.bugwarp.org',
     port: 443,
-    key: 'bilup',
+    key: 'bugwarp',
     path: '/',
     secure: true,
     config: {

@@ -22,9 +22,9 @@ const render = children => {
     // Schedule splash end after render completes
     requestAnimationFrame(() => {
         // Log time when React app renders (splash screen ends)
-        if (window.BILUP_LOAD_START_TIME) {
+        if (window.BUGWARP_LOAD_START_TIME) {
             if (window.performance && window.performance.mark) {
-                window.performance.mark('bilup-app-render');
+                window.performance.mark('bugwarp-app-render');
             }
         }
 

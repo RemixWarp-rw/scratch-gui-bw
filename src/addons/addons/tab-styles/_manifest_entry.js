@@ -17,10 +17,10 @@ const manifest = {
   "dynamicDisable": true,
   "userstyles": [
     {
-      "url": "bilup.css",
+      "url": "bugwarp.css",
       "if": {
         "settings": {
-          "tab_style": "bilup"
+          "tab_style": "bugwarp"
         }
       }
     },
@@ -65,8 +65,8 @@ const manifest = {
       "type": "select",
       "potentialValues": [
         {
-            "name": "Bilup",
-            "id": "bilup"
+            "name": "BugWarp",
+            "id": "bugwarp"
         },
         {
             "name": "TurboWarp",
@@ -77,7 +77,7 @@ const manifest = {
             "id": "scratchbox"
         }
       ],
-      "default": "Bilup"
+      "default": "BugWarp"
     },
     {
       "dynamic": true,

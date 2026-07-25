@@ -45,10 +45,10 @@ const messages = defineMessages({
         description: 'Filter option for all platforms',
         id: 'bl.bilme.allPlatforms'
     },
-    bilup: {
-        defaultMessage: 'Bilup',
-        description: 'Platform filter for Bilup',
-        id: 'bl.bilme.bilup'
+    bugwarp: {
+        defaultMessage: 'BugWarp',
+        description: 'Platform filter for BugWarp',
+        id: 'bl.bilme.bugwarp'
     },
     allColors: {
         defaultMessage: 'All Colors',
@@ -149,7 +149,7 @@ const COLORS = [
 
 const PLATFORMS = [
     {id: 'all', label: 'All Platforms'},
-    {id: 'bilup', label: 'Bilup'},
+    {id: 'bugwarp', label: 'BugWarp'},
 ];
 
 // Helper functions for color analysis
@@ -270,7 +270,7 @@ const BilmeModal = props => {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch('https://theme.bilup.org/api/themes');
+                const response = await fetch('https://theme.bugwarp.org/api/themes');
                 if (!response.ok) throw new Error('Failed to fetch themes');
                 const data = await response.json();
                 setThemes(data.themes || []);
@@ -326,19 +326,19 @@ const BilmeModal = props => {
     }, [themes, searchQuery, platformFilter, colorFilter, sortBy]);
 
     const handleCreateTheme = () => {
-        window.open('https://theme.bilup.org', '_blank');
+        window.open('https://theme.bugwarp.org', '_blank');
     };
 
     const handleOpenInBilme = theme => {
         const slug = theme.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/(^-|-$)/g, '');
-        window.open(`https://theme.bilup.org/themes/${theme.author}/${slug}`, '_blank');
+        window.open(`https://theme.bugwarp.org/themes/${theme.author}/${slug}`, '_blank');
     };
 
     const handleApplyTheme = async theme => {
         if (props.onThemeApply) {
             try {
                 const response = await fetch(
-                    `https://theme.bilup.org/api/theme/export?uuid=${theme.uuid}&platform=bilup`
+                    `https://theme.bugwarp.org/api/theme/export?uuid=${theme.uuid}&platform=bugwarp`
                 );
                 if (!response.ok) throw new Error('Failed to fetch theme');
                 const themeData = await response.json();
@@ -409,7 +409,7 @@ const BilmeModal = props => {
                                     value={p.id}
                                 >
                                     {p.id === 'all' ? props.intl.formatMessage(messages.allPlatforms) :
-                                        props.intl.formatMessage(messages.bilup)}
+                                        props.intl.formatMessage(messages.bugwarp)}
                                 </option>
                             ))}
                         </select>

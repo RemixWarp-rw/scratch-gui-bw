@@ -4,5 +4,5 @@ export default [
     {tag: 'mistium', intlLabel: 'Mistium'},
     {tag: 'sharkpool', intlLabel: 'SharkPool'},
     {tag: 'ae', intlLabel: 'AstraEditor'},
-    {tag: 'bilup', intlLabel: 'Bilup'}
+    {tag: 'bugwarp', intlLabel: 'BugWarp'}
 ];

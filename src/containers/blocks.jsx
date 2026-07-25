@@ -26,15 +26,19 @@ import {connect} from 'react-redux';
 import {updateToolbox} from '../reducers/toolbox';
 import {activateColorPicker} from '../reducers/color-picker';
 import {
-    closeExtensionLibrary,
     openSoundRecorder,
+    closeSoundRecorder,
     openConnectionModal,
-    openCustomExtensionModal
+    closeConnectionModal,
+    openCustomExtensionModal,
+    closeExtensionLibrary
 } from '../reducers/modals';
 import {activateCustomProcedures, deactivateCustomProcedures} from '../reducers/custom-procedures';
 import {setConnectionModalExtensionId} from '../reducers/connection-modal';
 import {updateMetrics} from '../reducers/workspace-metrics';
 import {isTimeTravel2020} from '../reducers/time-travel';
+import {enableCoreCategory, disableCoreCategory, setEnabledCoreCategories} from '../reducers/core-categories';
+import {recordBlockUsage} from '../reducers/bu-coins';
 
 import installSystemClipboardForBlocks from '../lib/mw/system-clipboard.js';
 
@@ -330,6 +334,19 @@ class Blocks extends React.Component {
         // If any modals are open, call hideChaff to close z-indexed field editors
         if (this.props.anyModalVisible && !prevProps.anyModalVisible) {
             this.ScratchBlocks.hideChaff();
+        }
+
+        // Update toolbox when enabled core categories change
+        const prevEnabled = prevProps.enabledCoreCategories || [];
+        const currEnabled = this.props.enabledCoreCategories || [];
+        const coreCategoriesChanged = prevEnabled.length !== currEnabled.length ||
+            prevEnabled.some(cat => !currEnabled.includes(cat));
+
+        if (coreCategoriesChanged) {
+            const toolboxXML = this.getToolboxXML();
+            if (toolboxXML) {
+                this.props.updateToolboxState(toolboxXML);
+            }
         }
 
         // Only rerender the toolbox when the blocks are visible and the xml is
@@ -977,6 +994,13 @@ class Blocks extends React.Component {
             .getWorkspace();
         this.flyoutWorkspace.addChangeListener(this.props.vm.flyoutBlockListener);
         this.flyoutWorkspace.addChangeListener(this.props.vm.monitorBlockListener);
+        this._buCoinBlockListener = event => {
+            if (event.type === 'create' && !event.recordUndo) {
+                const blockType = event.json?.type || event.blockId || 'block';
+                this.props.recordBlockUsage(blockType);
+            }
+        };
+        this.workspace.addChangeListener(this._buCoinBlockListener);
         this.props.vm.addListener('SCRIPT_GLOW_ON', this.onScriptGlowOn);
         this.props.vm.addListener('SCRIPT_GLOW_OFF', this.onScriptGlowOff);
         this.props.vm.addListener('BLOCK_GLOW_ON', this.onBlockGlowOn);
@@ -993,6 +1017,9 @@ class Blocks extends React.Component {
         this.props.vm.addListener('PERIPHERAL_DISCONNECTED', this.handleStatusButtonUpdate);
     }
     detachVM () {
+        if (this._buCoinBlockListener && this.workspace) {
+            this.workspace.removeChangeListener(this._buCoinBlockListener);
+        }
         this.props.vm.removeListener('SCRIPT_GLOW_ON', this.onScriptGlowOn);
         this.props.vm.removeListener('SCRIPT_GLOW_OFF', this.onScriptGlowOff);
         this.props.vm.removeListener('BLOCK_GLOW_ON', this.onBlockGlowOn);
@@ -1075,7 +1102,8 @@ class Blocks extends React.Component {
                 targetCostumes[targetCostumes.length - 1].name,
                 stageCostumes[stageCostumes.length - 1].name,
                 targetSounds.length > 0 ? targetSounds[targetSounds.length - 1].name : '',
-                this.props.theme.getBlockColors()
+                this.props.theme.getBlockColors(),
+                this.props.enabledCoreCategories
             );
         } catch {
             return null;
@@ -1469,7 +1497,9 @@ const mapStateToProps = state => ({
     toolboxXML: state.scratchGui.toolbox.toolboxXML,
     customProceduresVisible: state.scratchGui.customProcedures.active,
     workspaceMetrics: state.scratchGui.workspaceMetrics,
-    useCatBlocks: isTimeTravel2020(state)
+    useCatBlocks: isTimeTravel2020(state),
+    enabledCoreCategories: state.scratchGui.coreCategories.enabledCategories,
+    buCoinsBalance: state.scratchGui.buCoins.balance
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -1499,6 +1529,18 @@ const mapDispatchToProps = dispatch => ({
     },
     updateMetrics: metrics => {
         dispatch(updateMetrics(metrics));
+    },
+    enableCoreCategory: categoryId => {
+        dispatch(enableCoreCategory(categoryId));
+    },
+    disableCoreCategory: categoryId => {
+        dispatch(disableCoreCategory(categoryId));
+    },
+    setEnabledCoreCategories: categoryIds => {
+        dispatch(setEnabledCoreCategories(categoryIds));
+    },
+    recordBlockUsage: blockType => {
+        dispatch(recordBlockUsage(blockType));
     }
 });
 

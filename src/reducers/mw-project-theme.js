@@ -4,7 +4,7 @@ const SET_PROJECT_THEME_DONT_ASK_AGAIN = 'mw/project-theme/SET_PROJECT_THEME_DON
 
 const initialState = {
     visible: false,
-    bilupTheme: null,
+    bugwarpTheme: null,
     promptKey: null,
     dontAskAgain: false
 };
@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
     case OPEN_PROJECT_THEME_PROMPT:
         return {
             visible: true,
-            bilupTheme: action.bilupTheme,
+            bugwarpTheme: action.bugwarpTheme,
             promptKey: action.promptKey,
             dontAskAgain: false
         };
@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             visible: false,
-            bilupTheme: null,
+            bugwarpTheme: null,
             promptKey: null,
             dontAskAgain: false
         };
@@ -36,9 +36,9 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-const openProjectThemePrompt = (bilupTheme, promptKey) => ({
+const openProjectThemePrompt = (bugwarpTheme, promptKey) => ({
     type: OPEN_PROJECT_THEME_PROMPT,
-    bilupTheme,
+    bugwarpTheme,
     promptKey
 });
 

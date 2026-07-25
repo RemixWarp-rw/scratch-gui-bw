@@ -146,7 +146,7 @@ const motion = function (isInitialSetup, isStage, targetId, colors) {
         ${blockSeparator}
         <label text="${translate("UNSUPPORT_TW_1","Blocks below do not support TurboWarp")}"></label>
         <label text="${translate("UNSUPPORT_TW_2","And we highly discourage using them")}"></label>
-        <label text="${translate("UNSUPPORT_TW_3","They're keeping here only for compatibility with MistWarp")}"></label>
+        <label text="${translate("UNSUPPORT_TW_3","They're keeping here only for compatibility with BugWarp")}"></label>
         <block type="motion_pointtowards_xy" id="motion_pointtowards_xy">
             <value name="X">
                 <shadow id="pointx" type="math_number">
@@ -334,7 +334,7 @@ const looks = function (isInitialSetup, isStage, targetId, costumeName, backdrop
             ${blockSeparator}
             <label text="${translate("UNSUPPORT_TW_1","Blocks below do not support TurboWarp")}"></label>
             <label text="${translate("UNSUPPORT_TW_2","And we highly discourage using them")}"></label>
-            <label text="${translate("UNSUPPORT_TW_3","They're keeping here only for compatibility with MistWarp")}"></label>
+            <label text="${translate("UNSUPPORT_TW_3","They're keeping here only for compatibility with BugWarp")}"></label>
             <block id="${targetId}_costumes" type="looks_costumes"/>
         `}
         ${categorySeparator}
@@ -501,7 +501,7 @@ const control = function (isInitialSetup, isStage, targetId, colors) {
         ${blockSeparator}
         <label text="${translate("UNSUPPORT_TW_1","Blocks below do not support TurboWarp")}"></label>
         <label text="${translate("UNSUPPORT_TW_2","And we highly discourage using them")}"></label>
-        <label text="${translate("UNSUPPORT_TW_3","They're keeping here only for compatibility with MistWarp")}"></label>
+        <label text="${translate("UNSUPPORT_TW_3","They're keeping here only for compatibility with BugWarp")}"></label>
         <block type="control_switch" id="control_switch">
             <value name="VALUE">
                 <shadow type="text">
@@ -802,7 +802,7 @@ const operators = function (isInitialSetup, isStage, targetId, colors) {
         ${blockSeparator}
         <label text="${translate("UNSUPPORT_TW_1","Blocks below do not support TurboWarp")}"></label>
         <label text="${translate("UNSUPPORT_TW_2","And we highly discourage using them")}"></label>
-        <label text="${translate("UNSUPPORT_TW_3","They're keeping here only for compatibility with MistWarp")}"></label>
+        <label text="${translate("UNSUPPORT_TW_3","They're keeping here only for compatibility with BugWarp")}"></label>
         <block type="operator_pi" id="operator_pi"></block>
         <block type="operator_newline" id="operator_newline"></block>
         ${categorySeparator}
@@ -839,7 +839,7 @@ const myBlocks = function (isInitialSetup, isStage, targetId, colors) {
 // eslint-disable-next-line max-len
 const extraTurboWarpBlocks = `
 <block type="argument_reporter_boolean"><field name="VALUE">is compiled?</field></block>
-<block type="argument_reporter_boolean"><field name="VALUE">is Bilup?</field></block>
+<block type="argument_reporter_boolean"><field name="VALUE">is BugWarp?</field></block>
 `;
 /* eslint-enable no-unused-vars */
 
@@ -863,7 +863,8 @@ const xmlClose = '</xml>';
  * @returns {string} - a ScratchBlocks-style XML document for the contents of the toolbox.
  */
 const makeToolboxXML = function (isInitialSetup, isStage = true, targetId, categoriesXML = [],
-    costumeName = '', backdropName = '', soundName = '', colors = defaultBlockColors) {
+    costumeName = '', backdropName = '', soundName = '', colors = defaultBlockColors,
+    enabledCoreCategories = null) {
     isStage = isInitialSetup || isStage;
     const gap = [categorySeparator];
 
@@ -881,16 +882,33 @@ const makeToolboxXML = function (isInitialSetup, isStage = true, targetId, categ
         }
         // return `undefined`
     };
-    const motionXML = moveCategory('motion') || motion(isInitialSetup, isStage, targetId, colors.motion);
+
+    const isCoreCategoryEnabled = categoryId => {
+        if (enabledCoreCategories === null || enabledCoreCategories === undefined) {
+            return true;
+        }
+        return enabledCoreCategories.includes(categoryId);
+    };
+
+    const motionXML = moveCategory('motion') ||
+        (isCoreCategoryEnabled('motion') ? motion(isInitialSetup, isStage, targetId, colors.motion) : '');
     const looksXML = moveCategory('looks') ||
-        looks(isInitialSetup, isStage, targetId, costumeName, backdropName, colors.looks);
-    const soundXML = moveCategory('sound') || sound(isInitialSetup, isStage, targetId, soundName, colors.sounds);
-    const eventsXML = moveCategory('event') || events(isInitialSetup, isStage, targetId, colors.event);
-    const controlXML = moveCategory('control') || control(isInitialSetup, isStage, targetId, colors.control);
-    const sensingXML = moveCategory('sensing') || sensing(isInitialSetup, isStage, targetId, colors.sensing);
-    const operatorsXML = moveCategory('operators') || operators(isInitialSetup, isStage, targetId, colors.operators);
-    const variablesXML = moveCategory('data') || variables(isInitialSetup, isStage, targetId, colors.data);
-    const myBlocksXML = moveCategory('procedures') || myBlocks(isInitialSetup, isStage, targetId, colors.more);
+        (isCoreCategoryEnabled('looks') ?
+            looks(isInitialSetup, isStage, targetId, costumeName, backdropName, colors.looks) : '');
+    const soundXML = moveCategory('sound') ||
+        (isCoreCategoryEnabled('sound') ? sound(isInitialSetup, isStage, targetId, soundName, colors.sounds) : '');
+    const eventsXML = moveCategory('event') ||
+        (isCoreCategoryEnabled('event') ? events(isInitialSetup, isStage, targetId, colors.event) : '');
+    const controlXML = moveCategory('control') ||
+        (isCoreCategoryEnabled('control') ? control(isInitialSetup, isStage, targetId, colors.control) : '');
+    const sensingXML = moveCategory('sensing') ||
+        (isCoreCategoryEnabled('sensing') ? sensing(isInitialSetup, isStage, targetId, colors.sensing) : '');
+    const operatorsXML = moveCategory('operators') ||
+        (isCoreCategoryEnabled('operators') ? operators(isInitialSetup, isStage, targetId, colors.operators) : '');
+    const variablesXML = moveCategory('data') ||
+        (isCoreCategoryEnabled('data') ? variables(isInitialSetup, isStage, targetId, colors.data) : '');
+    const myBlocksXML = moveCategory('procedures') ||
+        (isCoreCategoryEnabled('procedures') ? myBlocks(isInitialSetup, isStage, targetId, colors.more) : '');
 
     // Always display TurboWarp blocks as the first extension, if it exists,
     // and also add an "is compiled?" block to the top.
